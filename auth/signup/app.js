@@ -59,7 +59,7 @@ signup_btn.addEventListener("click", () => {
         .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert(errorMessage);});
+        alert('Error messag : ',errorMessage);});
     }
 
     

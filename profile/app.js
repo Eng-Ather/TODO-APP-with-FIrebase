@@ -1,5 +1,4 @@
-// import{signOut,auth} from '../utils/firebaseSetup.js'
-import {auth, signOut} from '../../utils/firebaseSetup.js'
+import {auth, signOut} from '../utils/firebaseSetup.js'
 
 console.log('Sign-out function.');
 

@@ -1,0 +1,32 @@
+* {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    border: 2px solid black;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly; */
+
+}
+
+#profileBar {
+    width: 100%;
+    height: 15vh;
+    color: white;
+    text-align: center;
+    background-color: black;
+    border-top: 10px solid orange;
+    border-bottom: 10px solid orange;
+    background-image: url(https://www.techupdates.net/wp-content/uploads/2020/12/Firebase.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}

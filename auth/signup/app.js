@@ -44,9 +44,9 @@ signup_btn.addEventListener("click", () => {
     
       //if Signed up 
       .then((userCredential) =>
-         {              console.log('user : ', user.user.uid);
+         {             
              const user = userCredential.user; 
-             uploadImage()
+            //  uploadImage()
               // clearing all input feild
           signup_fname.value = ''
           signup_lname.value = ''
@@ -56,12 +56,15 @@ signup_btn.addEventListener("click", () => {
           // console.log(`user signup successfully! \n  user-id: ${user.email}`);
 
           location.href = "../../profile/index.html"
+          console.log('user : ', user.uid);
+
         })
 
         .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        alert('Error messag : ',errorMessage);});
+        console.log(errorMessage);
+        alert(errorMessage);});
     }
 
     

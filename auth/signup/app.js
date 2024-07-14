@@ -46,6 +46,7 @@ signup_btn.addEventListener("click", () => {
       .then((userCredential) =>
          {              console.log('user : ', user.user.uid);
              const user = userCredential.user; 
+             uploadImage()
               // clearing all input feild
           signup_fname.value = ''
           signup_lname.value = ''
@@ -64,7 +65,7 @@ signup_btn.addEventListener("click", () => {
     
 // ________________________________( upload Image )_____________________________________
 
-uploadImage()
+
 });
 
 function uploadImage() {

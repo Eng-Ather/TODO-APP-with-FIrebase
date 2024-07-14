@@ -55,7 +55,7 @@ signup_btn.addEventListener("click", () => {
           signup_image.value = ''  
           // console.log(`user signup successfully! \n  user-id: ${user.email}`);
 
-          location.href = ' ../../profile/index.html'
+          location.href = "../../profile/index.html"
         })
 
         .catch((error) => {

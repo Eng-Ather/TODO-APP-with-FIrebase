@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user profile</title>
+
+    <link rel="stylesheet" href="profile.css">
+</head>
+
+<body>
+    <div id='profileBar'>
+        <!-- <h2>TODO APP with Firebase</h2> -->
+
+        <div id="userInfoBlock">
+            <span id="profilePic">profilePic</span>
+
+            <div id="userInfo">
+                <span id="profileEmail">profileEmail</span>
+                <span id="profileName">profileName</span>
+                <button type="button" id="logout_btn">Sign out</button>
+                <!-- <button type="button" id="edit_btn">Edit profile</button> -->
+
+            </div>
+        </div>
+    </div>
+  
+<br><br>
+
+    <!-- todos -->
+    <div id="todo_box">
+
+        <div id="todoInputBox">
+
+            <input type="text" placeholder="todo text" id="todoText" maxlength="30">
+
+            <!-- todo catagory dropdown -->
+            <select id="todoDropdown">
+                <option value="" disabled selected> Catagory</option>
+                <option value="Home Work "> Home Work </option>
+                <option value="Exams"> Exams </option>
+                <option value="Project"> Project </option>
+                <option value="Activities"> Activities</option>
+                <option value="Personal"> Personal</option>
+                <option value="office "> Office Work </option> 
+
+            </select>
+
+            <input type="date" placeholder="Due date" id="todoDuedate">
+
+            <button id="addTodoBtn">ADD</button>
+        </div>
+
+
+        <!--TODO display box-->
+        <ul id="todoDisplayBox">
+            <li>Todo display list</li>
+        </ul>
+
+    </div>
+
+    <script src="app.js" type="module"></script>
+</body>
+
+</html>

@@ -1,0 +1,161 @@
+* {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    border: 2px solid black;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly; */
+
+}
+
+#profileBar {
+    width: 100%;
+    height: 20vh;
+    color: white;
+    text-align: center;
+    background-color: black;
+    border-top: 10px solid orange;
+    border-bottom: 10px solid orange;
+    background-image: url(https://www.techupdates.net/wp-content/uploads/2020/12/Firebase.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    /* justify-content: space-around; */
+    justify-content: end;
+
+}
+
+#userInfoBlock {
+    width: 250px;
+    height: 100px;
+    margin-right: 20px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+}
+
+#userInfo {
+    display: flex;
+    flex-direction: column;
+    line-height: 25px;
+
+}
+
+#logout_btn:hover {
+    color: orange;
+    border: 2px solid orange;
+    box-shadow: -2px -2px 5px orange;
+    background-color: black;
+
+}
+
+#profilePic>img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+#profilePic>img:hover {
+    border: 2px solid orange;
+    box-shadow: -2px 2px 5px orange;
+}
+
+#todo_box {
+    width: 95%;
+    height: 70vh;
+    margin: 0px auto;
+    /* border: 2px solid orange; */
+
+}
+
+#todoInputBox {
+    width: 100%;
+    margin: 0px auto;
+    /* border: 2px solid rgb(255, 77, 0); */
+    margin-top: 20px;
+}
+
+#todoText {
+    width: 50%;
+    padding: 5px;
+    text-align: center;
+    color: white;
+    background-color: black;
+}
+
+#todoText::placeholder {
+    color: white;
+}
+
+#todoText:hover {
+    color: orange;
+    border: 2px solid orange;
+    box-shadow: -2px -2px 5px orange;
+    background-color: black;
+}
+
+#todoDropdown,
+#todoDuedate,
+#addTodoBtn {
+    width: 16%;
+    padding: 5px;
+    text-align: center;
+    color: white;
+    background-color: black;
+
+}
+
+#todoDropdown:hover,
+#todoDuedate:hover,
+#addTodoBtn:hover {
+    color: orange;
+    border: 2px solid orange;
+    box-shadow: -2px -2px 5px orange;
+    background-color: black;
+}
+
+#todoDisplayBox {
+    width: 99%;
+    max-height: 450px;
+    /* margin: 0px auto; */
+    /* border: 3px solid orange; */
+    overflow-y: auto;
+
+
+}
+
+#todoDisplayBox>li {
+    width: 100%;
+    margin-top: 20px;
+    padding: 5px;
+    color: white;
+    /* border-top: 5px solid orange; */
+    border-bottom: 5px solid orange;
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#todoDisplayBox>li:hover {
+    border: 3px solid black;
+    background-color: orange;
+    color: black;
+
+}
+
+#todoDisplayBox>li>span {
+    /* border: 1px solid gray; */
+    width: 20%;
+   text-align: center;
+}

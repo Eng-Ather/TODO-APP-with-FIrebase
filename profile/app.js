@@ -179,7 +179,7 @@ function   calculating_remaing_days_in_due_date(dateee)
  }
 }
 
-//update profile ______________________________________________________________
+//update profile___________________________________________________
  var update_btn = document.getElementById('update_btn')
  var edit_box = document.getElementById('edit_box')
  var todo_box = document.getElementById('todo_box')
@@ -220,49 +220,66 @@ updateProfile(auth.currentUser, {
   // userImage
   
 })
-createUserWithEmailAndPassword(auth, signup_email.value, signup_password.value)
-.then((userCredential) => {
-  console.log('User UID:', userCredential.user.uid);
-
-  // Upload image to Firebase Storage
-  const userImageRef = ref(storage, `images/${signup_image.files[0].name}`);
-  uploadBytes(userImageRef, signup_image.files[0])
-    .then((snapshot) => {
-      console.log('Uploaded a file to storage!');
-
-      // Get download URL for the uploaded image
-      getDownloadURL(userImageRef)
-        .then((url) => {
-          userInfo_Object.userImage = url;
-          console.log(userInfo_Object);
-
-          // Create user profile document in Firestore
-          const userDbRef = doc(db, "usersProfile", userCredential.user.uid);
-          setDoc(userDbRef, userInfo_Object)
-            .then(() => {
-              console.log("User info Object Updated into DB with name userProfile");
-              // Redirect to signin page after successful signup
-              location.href = "../signin/index.html";
-            })
-            .catch((error) => {
-              console.error('Error setting document:', error);
-              alert('Failed to create user profile.');
-            });
-        })
-        .catch((error) => {
-          console.error('Error getting download URL:', error);
-          alert('Failed to get download URL.');
-        });
-    })
-    .catch((error) => {
-      console.error('Error uploading file:', error);
-      alert('Failed to upload image.');
-    });
+  // if Profile updated!
+.then(() => {
+  // console.log("Profile updated successfully");
+    
+  //   if (edit_image) {
+  //     const storageRef = ref(storage, `images/${edit_image.name}`);
+  //     uploadBytes(storageRef, edit_image)
+  //       .then((snapshot) => {
+  //         console.log('Uploaded image successfully');
+  //         getDownloadURL(storageRef)
+  //           .then((url) => {
+  //             // Update profile with image URL
+  //             updateProfile(user, {
+  //               photoURL: url
+  //             }).then(() => {
+  //               console.log('Profile photo updated successfully');
+  //               // Hide edit box and display todo box after updating profile
+  //               edit_box.style.display = 'none';
+  //               todo_box.style.display = 'block';
+  //             }).catch((error) => {
+  //               console.error('Error updating profile photo:', error);
+  //             });
+  //           }).catch((error) => {
+  //             console.error('Error getting download URL:', error);
+  //           });
+  //       }).catch((error) => {
+  //         console.error('Error uploading image:', error);
+  //       });
+  
+  
+  
+  
+  // ...
 })
-.catch((error) => {
-  const errorCode = error.code;
-  alert(error.message); // Displaying the error message to the user
-  console.error('Error creating user:', error);
-});
-}
-)
+
+// .catch((error) => {
+//   // An error occurred
+//   // ...
+// });
+
+
+
+
+
+ })
+  // _________________ End of return Function to calculating remaing days in due date_____________________
+
+//   edit_btn.addEventListener('click',()=>{
+//   // import { getAuth, updateProfile } from "firebase/auth";
+// const auuth = getAuth();
+// console.log(auuth.currentUser);
+// updateProfile(auuth.currentUser, {
+//   displayName: "Jane Q. User", photoURL: "https://example.com/jane-q-user/profile.jpg"
+// }).then(() => {
+//   // Profile updated!
+//   // ...
+// }).catch((error) => {
+//   // An error occurred
+//   // ...
+// });
+
+// })
+

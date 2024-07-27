@@ -6,13 +6,24 @@ import { auth,
    getDocs,
    deleteDoc,
    setDoc,   
+   updateDoc,
    collection,
    db,
    query,
    where,
+   ref,
+   storage,
+   uploadBytes,
+   getDownloadURL,
+   getStorage,
    getAuth,
    updateProfile 
    } 
+
+//    import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+// import { getAuth } from 'firebase/auth';
+// import { getFirestore, doc, updateDoc } from 'firebase/firestore';
+
 from "../utils/firebaseSetup.js";
 
 // -------------------------------------------------------------------------------
@@ -38,7 +49,10 @@ var todoDisplayBox = document.getElementById('todoDisplayBox')
 
 //auth.currentUser.email ----- current user id is saved in auth -> currentUser ->email
 
+displayProfile();
 
+// ____________ (Get user profile function) _____________
+async function displayProfile() {
 //updat user profile
 try {
   const querySnapshot = await getDocs(collection(db, "usersProfile"));
@@ -59,9 +73,10 @@ try {
 catch (e) {
   console.error("Error adding document: ", e);
 }
-
-
 getCurrentUserTodo(auth.currentUser.email)  //update todo list after login
+
+}
+
 
 //to add TODO
 addTodoBtn.addEventListener('click',()=>{
@@ -179,107 +194,68 @@ function   calculating_remaing_days_in_due_date(dateee)
  }
 }
 
-//update profile___________________________________________________
- var update_btn = document.getElementById('update_btn')
- var edit_box = document.getElementById('edit_box')
- var todo_box = document.getElementById('todo_box')
- var edit_btn = document.getElementById('edit_btn')
+// Variable Declarations
+var update_btn = document.getElementById('update_btn');
+var edit_box = document.getElementById('edit_box');
+var todo_box = document.getElementById('todo_box');
+var edit_fname = document.getElementById('edit_fname');
+var edit_image = document.getElementById('edit_image');
+var edit_btn = document.getElementById('edit_btn');
 
+// Event Listener for Update Button
+update_btn.addEventListener('click', () => {
+  edit_box.style.display = 'block';  
+  todo_box.style.display = 'none';
+});
 
- //display edit box and hide todo box
- update_btn.addEventListener('click', function(){
-  edit_box.style.display='block'
-  todo_box.style.display = 'none'
- })
+// Event Listener for Edit Button
+edit_btn.addEventListener('click', async () => {
 
- //display todo box and hide edit box and edit user profile also
- edit_btn.addEventListener('click', function(){
-   edit_box.style.display='none'
-  todo_box.style.display = 'block'
+ edit_btn.disabled = true //disable submit button
 
-  var edit_fname = document.getElementById('edit_fname')
-  var edit_lname = document.getElementById('edit_lname')
-  var edit_email = document.getElementById('edit_email')
-  var edit_password = document.getElementById('edit_password')
-  var edit_image = document.getElementById('edit_image')
+  // Ensure a file was selected
+  if (edit_image.files.length === 0) {
+    alert('Please select an image file to upload.');
+    return;
+  }
 
-  console.log(edit_fname.value);
-  console.log(edit_lname.value);
-  console.log(edit_email.value);
-  console.log(edit_password.value);
-  console.log(edit_image.files[0]);
+  const userImageRef = ref(storage, `images/${edit_image.files[0].name}`);
 
+  try {
+    // Upload the image file
+    await uploadBytes(userImageRef, edit_image.files[0]);
+    console.log('Uploaded a file to storage!');
 
-  // import { getAuth, updateProfile } from "firebase/auth";
-const auth = getAuth();
-updateProfile(auth.currentUser, {
+    // Generate URL
+    const imageUrl = await getDownloadURL(userImageRef);
+    console.log('Image URL:', imageUrl);
 
-  userName: `${edit_fname.value} ${edit_lname.value}`,
-  userEmail: edit_email.value,
-  userPassword: edit_password.value,
-  // userImage
-  
-})
-  // if Profile updated!
-.then(() => {
-  // console.log("Profile updated successfully");
-    
-  //   if (edit_image) {
-  //     const storageRef = ref(storage, `images/${edit_image.name}`);
-  //     uploadBytes(storageRef, edit_image)
-  //       .then((snapshot) => {
-  //         console.log('Uploaded image successfully');
-  //         getDownloadURL(storageRef)
-  //           .then((url) => {
-  //             // Update profile with image URL
-  //             updateProfile(user, {
-  //               photoURL: url
-  //             }).then(() => {
-  //               console.log('Profile photo updated successfully');
-  //               // Hide edit box and display todo box after updating profile
-  //               edit_box.style.display = 'none';
-  //               todo_box.style.display = 'block';
-  //             }).catch((error) => {
-  //               console.error('Error updating profile photo:', error);
-  //             });
-  //           }).catch((error) => {
-  //             console.error('Error getting download URL:', error);
-  //           });
-  //       }).catch((error) => {
-  //         console.error('Error uploading image:', error);
-  //       });
-  
-  
-  
-  
-  // ...
-})
+    // Check if user is signed in
+    if (auth.currentUser) {
+      // Create reference to the user's document
+      const userDocRef = doc(db, 'usersProfile', auth.currentUser.uid);
 
-// .catch((error) => {
-//   // An error occurred
-//   // ...
-// });
+      // Update user info object
+      await updateDoc(userDocRef, {
+        userName: edit_fname.value,
+        userImage: imageUrl
+      });
 
+      console.log('Profile updated successfully!');
+      displayProfile(); // Call function to display updated profile
 
+      // Hide the profile box
+      edit_box.style.display = 'none';  
+      todo_box.style.display = 'block';
+      edit_btn.disabled = false //disable submit button
 
+    } else {
+      console.log('No user is signed in.');
+      alert('No user is signed in.');
+    }
+  } catch (error) {
+    console.error('Error updating profile:', error);
+    alert('Error updating profile');
+  }
 
-
- })
-  // _________________ End of return Function to calculating remaing days in due date_____________________
-
-//   edit_btn.addEventListener('click',()=>{
-//   // import { getAuth, updateProfile } from "firebase/auth";
-// const auuth = getAuth();
-// console.log(auuth.currentUser);
-// updateProfile(auuth.currentUser, {
-//   displayName: "Jane Q. User", photoURL: "https://example.com/jane-q-user/profile.jpg"
-// }).then(() => {
-//   // Profile updated!
-//   // ...
-// }).catch((error) => {
-//   // An error occurred
-//   // ...
-// });
-
-// })
-
+});

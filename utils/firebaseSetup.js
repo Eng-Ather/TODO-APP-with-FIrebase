@@ -21,15 +21,6 @@ import {
   } 
 from "https://www.gstatic.com/firebasejs/10.12.3/firebase-storage.js";
 
-// import {
-//   getFirestore,     //to initallize firestore
-//   collection,      //to create collection in firestore
-//   doc,            // to create doc inside collection
-//   addDoc,        //to add TODO (data)
-//   getDocs,      //to get TODO (data)
-//   deleteDoc,   //to delete TODO (save data)   
-// } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
 //for firestore
 import { 
   getFirestore,     //to initallize firestore
@@ -41,6 +32,8 @@ import {
   deleteDoc,   //to delete TODO (save data)
   query,
   where,   
+  updateDoc,
+
 } 
 from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
@@ -100,7 +93,8 @@ console.log("Storage : " + storage);
     addDoc, 
     setDoc,   
     getDocs,   
-    deleteDoc, 
+    deleteDoc,
+   updateDoc,
     query,
     where,
     }

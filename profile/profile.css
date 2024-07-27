@@ -29,7 +29,7 @@ body {
     display: flex;
     align-items: center;
     /* justify-content: space-around; */
-    justify-content: end;
+    justify-content: space-around;
 
 }
 
@@ -126,7 +126,7 @@ body {
 
 #todoDisplayBox {
     width: 99%;
-    max-height: 500px;
+    max-height: 450px;
     /* margin: 0px auto; */
     /* border: 3px solid orange; */
     overflow-y: auto;
@@ -165,36 +165,38 @@ body {
 }
 
 #edit_box{
-    border: 3px solid black;
-    width: 65%;
-    height: 50vh;
+    color: white;
+    background-color: black;
+    border-bottom: 10px solid orange;
+    text-align: center;
+    /* border: 3px solid black; */
+    width: 60%;
+    height: 30vh;
     margin: 0px auto;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
+    justify-content: center;
+    align-items: center; */
+    /* display: none; */
+    position: absolute;
+    left: 25%;
+    top: 35%;
     display: none;
 
 }
 
 #edit_image,
-#edit_fname,
-#edit_lname,
-#edit_password,
-#edit_email {
-    /* width: 95%; */
+#edit_fname {
+    width: 85%;
     font-size: 13px;
     font-weight: bold;
     padding: 5px;
     text-align: center;
-    /* margin-top: 20px; */
+    margin-top:  20px;
 }
 
 #edit_image:hover,
-#edit_fname:hover,
-#edit_lname:hover,
-#edit_password:hover,
-#edit_email:hover {
+#edit_fname:hover{
     color: orange;
     border: 3px solid orange;
     box-shadow: -3px -3px 5px orange;
@@ -203,12 +205,14 @@ body {
 
 
 #edit_btn
- {  /* width: 95%; */
+ {   width: 85%;
     font-size: 13px;
     font-weight: bold;
     padding: 5px;
+    text-align: center;
     letter-spacing: 5px;
     color: rgb(84, 83, 83);
+    margin: 0px auto;
 }
 
 #edit_btn:hover{
@@ -217,4 +221,3 @@ body {
     box-shadow: -3px -3px 5px orange;
     background-color: black;
 }
-

@@ -144,7 +144,9 @@ signup_btn.addEventListener("click", () => {
                   .then(() => {
                     console.log("User info Object Updated into DB with name userProfile");
                     // Redirect to signin page after successful signup
-                    location.href = "../signin/index.html";
+                    // location.href = "../signin/index.html";
+                    location.href = "../../profile/index.html";
+
                   })
                   .catch((error) => {
                     console.error('Error setting document:', error);

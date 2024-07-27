@@ -211,17 +211,17 @@ update_btn.addEventListener('click', () => {
 // Event Listener for Edit Button
 edit_btn.addEventListener('click', async () => {
 
- edit_btn.disabled = true //disable submit button
-
   // Ensure a file was selected
-  if (edit_image.files.length === 0) {
-    alert('Please select an image file to upload.');
+  if (edit_image.files.length === 0 || !edit_fname.value) {
+    alert('fill both field');
     return;
   }
 
   const userImageRef = ref(storage, `images/${edit_image.files[0].name}`);
 
   try {
+    edit_btn.disabled = true //disable submit button
+
     // Upload the image file
     await uploadBytes(userImageRef, edit_image.files[0]);
     console.log('Uploaded a file to storage!');

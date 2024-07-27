@@ -115,6 +115,8 @@ signup_btn.addEventListener("click", () => {
   if (!signup_email.value || !signup_password.value || !signup_fname.value || !signup_lname.value || !signup_image.files[0]) {
     return alert("Please fill all fields.");
   } else {
+    signup_btn.disabled = true //disable submit button
+  
     var userInfo_Object = {
       userName: `${signup_fname.value} ${signup_lname.value}`,
       userEmail: signup_email.value,
@@ -143,8 +145,6 @@ signup_btn.addEventListener("click", () => {
                 setDoc(userDbRef, userInfo_Object)
                   .then(() => {
                     console.log("User info Object Updated into DB with name userProfile");
-                    // Redirect to signin page after successful signup
-                    // location.href = "../signin/index.html";
                     location.href = "../../profile/index.html";
 
                   })
@@ -169,6 +169,8 @@ signup_btn.addEventListener("click", () => {
         console.error('Error creating user:', error);
       });
   }
+  // signup_btn.disabled = false //disable submit button
+
 });
 
 // Clearing all input fields (should be done after successful signup)
